@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chronograph — Stopwatch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="stage">
+
+    <header class="masthead">
+      <span class="masthead__mark">CAL.&nbsp;01</span>
+      <h1 class="masthead__title">Chronograph</h1>
+      <span class="masthead__sub">Precision Timer</span>
+    </header>
+
+    <main class="case" id="case">
+
+      <!-- crown / pusher: reset (left) -->
+      <button class="pusher pusher--left" id="resetBtn" aria-label="Reset stopwatch" title="Reset">
+        <span class="pusher__stem"></span>
+        <span class="pusher__cap">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
+        </span>
+      </button>
+
+      <!-- pusher: lap (bottom right) -->
+      <button class="pusher pusher--bottom" id="lapBtn" aria-label="Record lap" title="Lap" disabled>
+        <span class="pusher__stem"></span>
+        <span class="pusher__cap">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="3" x2="12" y2="7"/><line x1="12" y1="17" x2="12" y2="21"/><line x1="3" y1="12" x2="7" y2="12"/><line x1="17" y1="12" x2="21" y2="12"/></svg>
+        </span>
+      </button>
+
+      <!-- pusher: start/pause (top right) -->
+      <button class="pusher pusher--top" id="startBtn" aria-label="Start stopwatch" title="Start">
+        <span class="pusher__stem"></span>
+        <span class="pusher__cap pusher__cap--accent">
+          <svg class="icon-play" viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          <svg class="icon-pause" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="display:none"><rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/></svg>
+        </span>
+      </button>
+
+      <div class="bezel">
+        <svg class="ticks" viewBox="0 0 320 320" aria-hidden="true">
+          <circle cx="160" cy="160" r="150" class="ticks__rim" />
+          <g id="tickMarks"></g>
+          <circle id="progressRing" cx="160" cy="160" r="140" class="ticks__progress" />
+        </svg>
+
+        <div class="dial">
+          <div class="status" id="status">
+            <span class="status__dot" id="statusDot"></span>
+            <span id="statusText">Ready</span>
+          </div>
+
+          <div class="readout" id="readout" aria-live="polite">
+            <span class="readout__hours" id="hh">00<span class="readout__colon">:</span></span><span
+              class="readout__mins" id="mm">00</span><span class="readout__colon">:</span><span
+              class="readout__secs" id="ss">00</span><span
+              class="readout__cs" id="cs">.00</span>
+          </div>
+
+          <div class="dial__foot">
+            <span id="lapCount">0 laps</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="case__label case__label--left">RESET</div>
+      <div class="case__label case__label--top" id="startLabel">START</div>
+      <div class="case__label case__label--bottom">LAP</div>
+
+    </main>
+
+    <section class="laps" aria-label="Lap times">
+      <div class="laps__head">
+        <span>Splits</span>
+        <button class="laps__clear" id="clearLaps" title="Clear splits" aria-label="Clear splits">Clear</button>
+      </div>
+      <ol class="laps__list" id="lapsList">
+        <li class="laps__empty" id="lapsEmpty">No splits recorded yet — hit the bottom-right pusher while running.</li>
+      </ol>
+    </section>
+
+  </div>
+
+<script src="script.js"></script>
+</body>
+</html>
